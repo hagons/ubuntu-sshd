@@ -1,4 +1,5 @@
-FROM       ubuntu:12.04
+FROM ubuntu:focal
+LABEL maintainer="hagon"
 
 RUN apt-get update
 
@@ -16,5 +17,11 @@ RUN apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 22
+
+# time
+ARG TZ="Asia/Seoul"
+ENV TZ="${TZ}"
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 
 CMD    ["/usr/sbin/sshd", "-D"]
