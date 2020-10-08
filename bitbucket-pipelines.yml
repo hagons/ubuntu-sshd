@@ -9,3 +9,5 @@ pipelines:
           - docker push $DOCKER_HUB_USER/ubuntu-sshd:latest
         services:
           - docker
+        caches:
+          - docker
